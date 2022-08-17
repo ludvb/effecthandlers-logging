@@ -37,12 +37,17 @@ def _format_text_message(text, level):
         level_str = color("ERROR", fg="#ff0000", style="bold")
     else:
         raise NotImplementedError()
-    return "  ".join(
+    return "\n".join(
         [
-            "[ {} ]".format(DateTime.now().to_datetime_string()),
-            level_str,
-            color("({})".format(str(os.getpid())), fg="Gray"),
-            text,
+            "  ".join(
+                [
+                    "[ {} ]".format(DateTime.now().to_datetime_string()),
+                    level_str,
+                    color("({})".format(str(os.getpid())), fg="Gray"),
+                    x,
+                ]
+            )
+            for x in text.split("\n")
         ]
     )
 
